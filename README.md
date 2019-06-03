@@ -9,6 +9,10 @@ Python 3.6^ - get the latest [here](https://www.python.org/downloads/)
 #### How it works
 
 #### Running Tests
+```
+$ cd airportpy-git
+$ python3 airportpy/test/runner.py
+```
 
 #### User Stories
 ```
