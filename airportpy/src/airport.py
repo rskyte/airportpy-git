@@ -2,10 +2,10 @@
 
 class Airport:
     def __init__(self):
-        return
+        self.planes = []
     
     def land(self, plane):
-        self.plane = plane
+        self.planes.append(plane)
 
     def take_off(self, plane):
-        self.plane = None
+        self.planes.remove(plane)
