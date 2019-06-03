@@ -25,6 +25,7 @@ class AirportTest(unittest.TestCase):
         self.plane_1.land.assert_called_once()
 
     def test_airport_makes_planes_aware_of_take_off(self):
+        self.airport.land(self.plane_1)
         self.airport.take_off(self.plane_1)
         self.plane_1.take_off.assert_called_once()
 
@@ -44,7 +45,10 @@ class AirportTest(unittest.TestCase):
         self.assertIsNot(value, self.plane_1, "plane has not taken off")
         self.assertEqual(1, len(self.airport.planes), "plane has not taken off")
         
-    
+    def test_planes_not_in_airport_cannot_take_off_from_it(self):
+        with self.assertRaises(Exception):
+            self.airport.take_off(self.plane_1)
+        
 
 
 if __name__ == '__main__':
