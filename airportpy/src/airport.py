@@ -12,8 +12,6 @@ class Airport:
         self.weather = weather
     
     def land(self, plane):
-        print(len(self.planes) >= self.capacity)
-        print(self.weather.is_stormy())
         if len(self.planes) >= self.capacity or self.weather.is_stormy():
             raise Exception
         plane.land()
