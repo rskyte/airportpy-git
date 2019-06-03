@@ -9,7 +9,7 @@ from src.airport import Airport
 
 class AirportTest(unittest.TestCase):
     def setUp(self):
-        self.airport = Airport()
+        self.airport = Airport(3)
         self.plane_1 = Mock()
         self.plane_1.land = MagicMock()
         self.plane_1.take_off = MagicMock()
@@ -49,7 +49,11 @@ class AirportTest(unittest.TestCase):
         with self.assertRaises(Exception):
             self.airport.take_off(self.plane_1)
         
-
+    def test_planes_cannot_land_if_airport_is_at_max_capacity(self):
+        for i in range(0, 3):
+            self.airport.land(self.plane_1)
+        with self.assertRaises(Exception):
+            self.airport.land(self.plane_1)
 
 if __name__ == '__main__':
     unittest.main()
