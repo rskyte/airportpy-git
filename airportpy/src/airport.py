@@ -6,3 +6,6 @@ class Airport:
     
     def land(self, plane):
         self.plane = plane
+
+    def take_off(self, plane):
+        self.plane = None

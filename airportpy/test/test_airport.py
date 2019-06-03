@@ -16,9 +16,13 @@ class AirportTest(unittest.TestCase):
     def test_airport_can_land_planes(self):
         self.airport.land(self.plane)
         value = self.airport.plane
-        self.assertEqual(value, self.plane, "plane has not landed")
+        self.assertIs(value, self.plane, "plane has not landed")
     
-
+    def test_airport_can_allow_planes_to_take_off(self):
+        self.airport.land(self.plane)
+        self.airport.take_off(self.plane)
+        value = self.airport.plane
+        self.assertIsNot(value, self.plane, "plane has not taken off")
 
 if __name__ == '__main__':
     unittest.main()
