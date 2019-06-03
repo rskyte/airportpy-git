@@ -9,16 +9,26 @@ from src.airport import Airport
 
 class AirportTest(unittest.TestCase):
     def setUp(self):
-        self.airport = Airport(3)
         self.plane_1 = Mock()
         self.plane_1.land = MagicMock()
         self.plane_1.take_off = MagicMock()
+
         self.plane_2 = Mock()
         self.plane_2.land = MagicMock()
         self.plane_2.take_off = MagicMock()
+
         self.error_plane = Mock()
-        self.error_plane.land = MagicMock()(return_value=Exception)
-        self.error_plane.take_off = MagicMock()(return_value=Exception)
+        self.error_plane.land = MagicMock(return_value=Exception)
+        self.error_plane.take_off = MagicMock(return_value=Exception)
+
+        self.good_weather = Mock()
+        self.good_weather.is_stormy = MagicMock(return_value=False)
+
+        self.bad_weather = Mock()
+        self.bad_weather.is_stormy = MagicMock(return_value=True)
+
+        self.airport = Airport(3, self.good_weather)
+        self.stormy_airport = Airport(3, self.bad_weather)
         
     def test_airport_makes_planes_aware_of_landing(self):
         self.airport.land(self.plane_1)
@@ -54,6 +64,15 @@ class AirportTest(unittest.TestCase):
             self.airport.land(self.plane_1)
         with self.assertRaises(Exception):
             self.airport.land(self.plane_1)
+
+    def test_planes_cannot_take_off_during_stormy_weather(self):
+        self.stormy_airport.planes.append(self.plane_1)
+        with self.assertRaises(Exception):
+            self.stormy_airport.take_off(self.plane_1)
+
+    def test_planes_cannot_land_during_stormy_weather(self):
+        with self.assertRaises(Exception):
+            self.stormy_airport.land(self.plane_1)
 
 if __name__ == '__main__':
     unittest.main()
