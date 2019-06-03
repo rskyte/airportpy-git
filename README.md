@@ -1,6 +1,7 @@
 ## Airport
 
 An simple airport model; planes can land and take off, airports have capacities and weather conditions can ground planes/prevent landings.
+Original idea from makers academy's airport challenge.
 
 #### Prerequisites
 
