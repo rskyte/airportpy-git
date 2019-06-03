@@ -6,7 +6,51 @@ An simple airport model; planes can land and take off, airports have capacities 
 
 Python 3.6^ - get the latest [here](https://www.python.org/downloads/)
 
-#### How it works
+#### Implementation (in python REPL)
+```
+$ cd airportpy-git
+$ python3
+```
+```
+>>> import sys
+>>> sys.path.append('./airportpy')
+>>> from src.airport import Airport
+>>> from src.plane import Plane
+>>> plane_1 = Plane()
+>>> plane_2 = Plane()
+>>> plane_3 = Plane()
+>>> plane_4 = Plane()
+>>> airport = Airport(3)
+>>> airport.land(plane_1)
+>>> airport.land(plane_2)
+>>> airport.land(plane_3)
+>>> airport.land(plane_4)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "./airportpy/src/airport.py", line 16, in land
+    raise Exception
+Exception
+>>> airport.land(plane_3)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "./airportpy/src/airport.py", line 16, in land
+    raise Exception
+Exception
+>>> airport.take_off(plane_3)
+>>> airport.take_off(plane_2)
+>>> airport.take_off(plane 2)
+  File "<stdin>", line 1
+    airport.take_off(plane 2)
+                           ^
+SyntaxError: invalid syntax
+>>> airport.take_off(plane_2)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "./airportpy/src/airport.py", line 22, in take_off
+    raise Exception 
+Exception
+>>> 
+```
 
 #### Running Tests
 ```
