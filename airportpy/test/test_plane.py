@@ -25,6 +25,7 @@ class PlaneTest(unittest.TestCase):
             self.plane.take_off()
             
     def test_landed_planes_cannot_land(self):
+        self.plane.land()
         with self.assertRaises(Exception):
             self.plane.land()
 
